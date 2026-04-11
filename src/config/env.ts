@@ -10,6 +10,12 @@ const envSchema = z.object({
   GOOGLE_API_KEY: z.string().optional(),
   MONGODB_URI: z.string().min(1, "MONGODB_URI is required"),
   MONGODB_DB: z.string().default("model_router"),
+  /**
+   * Optional: inline JSON for the model registry. When set, takes priority
+   * over the on-disk models.json file. Useful for serverless deploys where
+   * bundling a sibling JSON file is awkward.
+   */
+  MODELS_JSON: z.string().optional(),
   PORT: z.coerce.number().int().positive().default(3000),
   NODE_ENV: z
     .enum(["development", "production", "test"])

@@ -143,3 +143,5 @@ vite.config.ts.timestamp-*
 
 # Local model registry (contains pricing + provider model IDs — managed outside git)
 models.json
+
+vercel.json
