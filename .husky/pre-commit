@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+# Pre-commit hook: run TypeScript typecheck before allowing a commit.
+# Add more checks (lint, format, tests) as the project grows.
+
+echo "Running typecheck..."
+npm run typecheck || {
+  echo ""
+  echo "Typecheck failed. Commit aborted. Fix the errors above and try again."
+  exit 1
+}
