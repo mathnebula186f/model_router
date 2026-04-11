@@ -140,8 +140,3 @@ vite.config.ts.timestamp-*
 
 # macOS
 .DS_Store
-
-# Local model registry (contains pricing + provider model IDs — managed outside git)
-models.json
-
-vercel.json

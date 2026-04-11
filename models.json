@@ -1,0 +1,33 @@
+{
+  "smart-fast": {
+    "provider": "openai",
+    "provider_model": "gpt-4o-mini",
+    "pricing": {
+      "input_per_1m_usd": 0.15,
+      "output_per_1m_usd": 0.60,
+      "cache_read_per_1m_usd": 0.075
+    },
+    "defaults": { "temperature": 0.7, "max_tokens": 1024 }
+  },
+  "deep-reasoner": {
+    "provider": "anthropic",
+    "provider_model": "claude-sonnet-4-5",
+    "pricing": {
+      "input_per_1m_usd": 3.00,
+      "output_per_1m_usd": 15.00,
+      "cache_write_per_1m_usd": 3.75,
+      "cache_read_per_1m_usd": 0.30
+    },
+    "defaults": { "temperature": 0.5, "max_tokens": 2048 }
+  },
+  "gemini-fast": {
+    "provider": "google",
+    "provider_model": "gemini-2.5-flash",
+    "pricing": {
+      "input_per_1m_usd": 0.30,
+      "output_per_1m_usd": 2.50,
+      "cache_read_per_1m_usd": 0.075
+    },
+    "defaults": { "temperature": 0.7, "max_tokens": 1024 }
+  }
+}
