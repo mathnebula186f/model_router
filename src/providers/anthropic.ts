@@ -1,4 +1,5 @@
-import Anthropic from "@anthropic-ai/sdk";
+import { Anthropic } from "@anthropic-ai/sdk";
+import type { TextBlock } from "@anthropic-ai/sdk/resources/messages";
 import { env } from "../config/env.js";
 import type {
   GenerateInput,
@@ -53,7 +54,7 @@ export const anthropicProvider: Provider = {
 
     // Collect all text blocks from the content array.
     const text = response.content
-      .filter((b): b is Anthropic.TextBlock => b.type === "text")
+      .filter((b): b is TextBlock => b.type === "text")
       .map((b) => b.text)
       .join("");
 
