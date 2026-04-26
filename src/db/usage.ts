@@ -22,6 +22,7 @@ export interface UsageRecord {
   error_message?: string;
   params: Record<string, unknown>;
   prompt_chars: number;
+  tag?: string;
 }
 
 export async function recordUsage(record: UsageRecord): Promise<void> {

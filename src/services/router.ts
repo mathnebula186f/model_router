@@ -14,6 +14,7 @@ export interface RouteRequest {
   model: string;
   prompts: PromptMessage[];
   params?: GenerateParams;
+  tag?: string;
 }
 
 export class RouterError extends Error {
@@ -103,6 +104,7 @@ export async function routeGenerate(
       status: "ok",
       params: sanitizeParams(mergedParams),
       prompt_chars: promptChars,
+      tag: req.tag,
     }).catch((err) =>
       logger.error({ err, requestId }, "failed to record usage"),
     );
@@ -152,6 +154,7 @@ export async function routeGenerate(
       error_message: message,
       params: sanitizeParams(mergedParams),
       prompt_chars: promptChars,
+      tag: req.tag,
     }).catch((e) =>
       logger.error({ err: e, requestId }, "failed to record usage error"),
     );

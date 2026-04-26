@@ -18,6 +18,7 @@ export async function connectMongo(): Promise<Db> {
   await usage.createIndex({ ts: -1 });
   await usage.createIndex({ model: 1, ts: -1 });
   await usage.createIndex({ status: 1, ts: -1 });
+  await usage.createIndex({ tag: 1, ts: -1 }, { sparse: true });
 
   return db;
 }

@@ -20,6 +20,7 @@ export const generateRequestSchema = z.object({
   model: z.string().min(1),
   prompts: z.array(promptMessageSchema).min(1),
   params: generateParamsSchema,
+  tag: z.string().min(1).max(100).optional(),
 });
 
 export type GenerateRequest = z.infer<typeof generateRequestSchema>;
