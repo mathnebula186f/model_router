@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import type { ChatCompletionMessageParam } from "openai/resources/chat/completions";
 import { env } from "../config/env.js";
 import type {
   GenerateInput,
@@ -21,11 +22,10 @@ export const openaiProvider: Provider = {
     const openai = getClient();
     const { providerModel, prompts, params } = input;
 
-    const messages =
-      prompts.map((m) => ({
-        role: m.role,
-        content: m.content,
-      })) as OpenAI.Chat.Completions.ChatCompletionMessageParam[];
+    const messages = prompts.map((m) => ({
+      role: m.role,
+      content: m.content,
+    })) as ChatCompletionMessageParam[];
 
     const response = await openai.chat.completions.create({
       model: providerModel,
