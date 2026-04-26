@@ -1,5 +1,5 @@
 {
-  "smart-fast": {
+  "gpt-4o-mini": {
     "provider": "openai",
     "provider_model": "gpt-4o-mini",
     "pricing": {
@@ -9,7 +9,7 @@
     },
     "defaults": { "temperature": 0.7, "max_tokens": 1024 }
   },
-  "deep-reasoner": {
+  "claude-sonnet-4-5": {
     "provider": "anthropic",
     "provider_model": "claude-sonnet-4-5",
     "pricing": {
@@ -20,7 +20,7 @@
     },
     "defaults": { "temperature": 0.5, "max_tokens": 2048 }
   },
-  "gemini-fast": {
+  "gemini-2.5-flash": {
     "provider": "google",
     "provider_model": "gemini-2.5-flash",
     "pricing": {
