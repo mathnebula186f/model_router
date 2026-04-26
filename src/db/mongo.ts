@@ -6,7 +6,7 @@ let client: MongoClient | null = null;
 let db: Db | null = null;
 
 export async function connectMongo(): Promise<Db> {
-  if (db) return db;
+  if (db) return db; // if we have db just return it
 
   client = new MongoClient(env.MONGODB_URI);
   await client.connect();

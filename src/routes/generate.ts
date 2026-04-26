@@ -1,6 +1,7 @@
 import { Router, type Request, type Response, type NextFunction } from "express";
 import { generateRequestSchema } from "../schemas/generate.schema.js";
-import { routeGenerate } from "../services/router.js";
+import { routeGenerate, RouterError } from "../services/router.js";
+import { checkPrompts } from "../services/guardrail.js";
 
 export const generateRouter = Router();
 
@@ -9,15 +10,25 @@ generateRouter.post(
   async (req: Request, res: Response, next: NextFunction) => {
     const parsed = generateRequestSchema.safeParse(req.body);
     if (!parsed.success) {
-      res.status(400).json({
-        ok: false,
-        error: {
-          code: "VALIDATION",
-          message: "Invalid request body",
-          details: parsed.error.flatten(),
-        },
-      });
-      return;
+      return next(
+        new RouterError(
+          "VALIDATION",
+          "Invalid request body",
+          400,
+          parsed.error.flatten(),
+        ),
+      );
+    }
+
+    const guard = checkPrompts(parsed.data.prompts);
+    if (!guard.ok) {
+      return next(
+        new RouterError("GUARDRAIL_BLOCKED", guard.reason, 400, {
+          role: guard.role,
+          index: guard.index,
+          matched: guard.matched,
+        }),
+      );
     }
 
     try {
